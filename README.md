@@ -4,11 +4,10 @@
 
 ### Features
 
-- **Get anonymous messages** from anyone by giving them your unique link
-- **Read messages** anonymously without revealing sender identity
+- **Get anonymous messages** from anyone with your unique link
+- **Read messages** without knowing who sent them
 - **No registration or login required** for sending messages
-- **Registration or login required** for creting unique link
-- **Control message acceptance** you can disable and enable message acceptance as per your need
+- **Control** when you want to accept messages
 - **Responsive design** for seamless experience on any device
 
 ### How to Use
