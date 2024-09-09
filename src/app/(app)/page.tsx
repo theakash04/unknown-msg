@@ -27,7 +27,7 @@ export default function Home() {
             </Link>
             <a href={"https://twitter.com/THEAkash04"}>
               <Button size={"lg"} variant={"outline"}>
-                Creater Social
+                Creator Social
               </Button>
             </a>
           </div>
