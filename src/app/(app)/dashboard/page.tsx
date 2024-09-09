@@ -1,11 +1,10 @@
 "use client";
-
-import { MessageCard } from "@/components/MessageCard";
+import MessageCard from "@/components/MessageCard";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/components/ui/use-toast";
-import { Message } from "@/model/User";
+import { Message } from "@/model/User.model";
 import { ApiResponse } from "@/types/ApiResponse";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
@@ -14,7 +13,7 @@ import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { AcceptMessageSchema } from "@/schemas/acceptMessageSchema";
+import { acceptmessagesSchema } from "@/schemas/acceptMessageSchema";
 
 function UserDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -30,7 +29,10 @@ function UserDashboard() {
   const { data: session } = useSession();
 
   const form = useForm({
-    resolver: zodResolver(AcceptMessageSchema),
+    resolver: zodResolver(acceptmessagesSchema),
+    defaultValues: {
+      acceptMessages: true,
+    },
   });
 
   const { register, watch, setValue } = form;
@@ -39,8 +41,8 @@ function UserDashboard() {
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
-      const response = await axios.get<ApiResponse>("/api/accept-messages");
-      setValue("acceptMessages", response.data.isAcceptingMessages);
+      const response = await axios.get<ApiResponse>("/api/accept-message");
+      setValue("acceptMessages", response.data.isAcceptingMessage ?? true);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
@@ -71,7 +73,7 @@ function UserDashboard() {
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
         toast({
-          title: "Error",
+          title: "Error while getting Messages",
           description:
             axiosError.response?.data.message ?? "Failed to fetch messages",
           variant: "destructive",
@@ -81,7 +83,7 @@ function UserDashboard() {
         setIsSwitchLoading(false);
       }
     },
-    [setIsLoading, setMessages, toast],
+    [setIsLoading, setMessages, toast]
   );
 
   // Fetch initial state from the server
@@ -89,14 +91,13 @@ function UserDashboard() {
     if (!session || !session.user) return;
 
     fetchMessages();
-
     fetchAcceptMessages();
-  }, [session, setValue, toast, fetchAcceptMessages, fetchMessages]);
+  }, [session, fetchAcceptMessages, fetchMessages]);
 
   // Handle switch change
   const handleSwitchChange = async () => {
     try {
-      const response = await axios.post<ApiResponse>("/api/accept-messages", {
+      const response = await axios.post<ApiResponse>("/api/accept-message", {
         acceptMessages: !acceptMessages,
       });
       setValue("acceptMessages", !acceptMessages);
@@ -134,7 +135,7 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
+    <div className="my-8 mx-0 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
       <div className="mb-4">
@@ -144,13 +145,13 @@ function UserDashboard() {
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="w-full p-2 mr-2 rounded-md input border-input border"
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
+          <Button onClick={copyToClipboard} size={"lg"}>Copy</Button>
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 flex">
         <Switch
           {...register("acceptMessages")}
           checked={acceptMessages}
@@ -166,6 +167,7 @@ function UserDashboard() {
       <Button
         className="mt-4"
         variant="outline"
+        size={"icon"}
         onClick={(e) => {
           e.preventDefault();
           fetchMessages(true);
@@ -177,11 +179,11 @@ function UserDashboard() {
           <RefreshCcw className="h-4 w-4" />
         )}
       </Button>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <MessageCard
-              key={message._id}
+              key={index}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />

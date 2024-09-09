@@ -19,7 +19,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-const verifyAccount = () => {
+const VerifyAccount = () => {
   const router = useRouter();
   const params = useParams<{ username: string }>();
   const { toast } = useToast();
@@ -42,7 +42,6 @@ const verifyAccount = () => {
 
       router.push(`/sign-in`);
     } catch (error) {
-      console.log("Error in sign-up of user", error);
       const AxiosError = error as AxiosError<ApiResponse>;
       let errorMessage = AxiosError.response?.data.message;
       toast({
@@ -88,4 +87,4 @@ const verifyAccount = () => {
   );
 };
 
-export default verifyAccount;
+export default VerifyAccount;

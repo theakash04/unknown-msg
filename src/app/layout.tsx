@@ -3,12 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "../context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "True Feedback",
-  description: "Real feedback from real people.",
+  title: "Unkown Messages",
+  description:
+    "Create a unique link to receive anonymous messages and honest feedback. Discover what people think without knowing who sent it.",
 };
 
 interface RootLayoutProps {
@@ -17,11 +19,18 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
+      <Head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </Head>
       <AuthProvider>
-        <body className={inter.className}>
-          {children}
+        <body className={`${inter.className}`}>
+          <main>{children}</main>
           <Toaster />
+          {/* Footer */}
+          <footer className="text-center p-4 md:p-6">
+            &copy; 2024 unkown message. All rights reserved.
+          </footer>
         </body>
       </AuthProvider>
     </html>

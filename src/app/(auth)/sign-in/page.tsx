@@ -17,10 +17,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 function Page() {
   const { toast } = useToast();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
 
   // zod implementation
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -32,12 +35,14 @@ function Page() {
   });
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    setIsLoading(true)
     const result = await signIn("credentials", {
       redirect: false,
       identifier: data.identifier,
       password: data.password,
     });
     if (result?.error) {
+      setIsLoading(false)
       toast({
         title: "Login failed",
         description: "Incorrect username/email or password",
@@ -46,14 +51,14 @@ function Page() {
     }
 
     if (result?.url) {
-      console.log("here came");
-      router.push("/dashboard");
+      setIsLoading(false)
+      router.replace("/dashboard");
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-background">
+      <div className="w-full max-w-md p-8 space-y-8 bg-secondary rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Join Unkown Message
@@ -91,7 +96,11 @@ function Page() {
             />
 
             <div className="flex items-center justify-center">
-              <Button type="submit">Sign in</Button>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : "Sign in"}
+              </Button>
             </div>
           </form>
         </Form>
@@ -100,7 +109,7 @@ function Page() {
             New here?
             <Link
               href="/sign-up"
-              className="text-blue-600 hover:text-blue-800 pl-2"
+              className="text-blue-500 hover:text-blue-700 pl-2"
             >
               Create your account
             </Link>

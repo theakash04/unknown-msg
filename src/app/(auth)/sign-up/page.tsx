@@ -13,7 +13,6 @@ import { ApiResponse } from "@/types/ApiResponse";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -52,7 +51,7 @@ function Page() {
           const response = await axios.get(
             `/api/check-username?username=${username}`
           );
-          
+
           setUsernameMessage(response.data.message);
         } catch (error) {
           const AxiosError = error as AxiosError<ApiResponse>;
@@ -64,6 +63,8 @@ function Page() {
         }
       }
     };
+
+    // Only run the username check after the component is mounted
     checkUsername();
   }, [username]);
 
@@ -77,7 +78,6 @@ function Page() {
       });
       router.replace(`/verify/${username}`);
     } catch (error) {
-      console.log("Error in sign-up of user", error);
       const AxiosError = error as AxiosError<ApiResponse>;
       let errorMessage = AxiosError.response?.data.message;
       toast({
@@ -91,8 +91,8 @@ function Page() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-background">
+      <div className="w-full max-w-md p-8 space-y-8 bg-secondary rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Join Unkown Message
@@ -171,7 +171,7 @@ function Page() {
         <div className="text-center mt-4">
           <p>
             Already a member?{" "}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-in" className="text-blue-500 hover:text-blue-700">
               Sign in
             </Link>
           </p>

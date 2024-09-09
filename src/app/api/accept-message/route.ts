@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Not authenticated!",
       },
-      { status: 401 },
+      { status: 401 }
     );
   }
 
@@ -25,11 +25,10 @@ export async function POST(request: Request) {
   const { acceptMessages } = await request.json();
 
   try {
-    const updatedUser = await UserModel.findByIdAndUpdate(
-      userId,
-      { isAcceptigMessage: acceptMessages },
-      { new: true },
-    );
+    const updatedUser = await UserModel.findByIdAndUpdate(userId, {
+      isAcceptingMessages: acceptMessages,
+    });
+
 
     if (!updatedUser) {
       return Response.json(
@@ -37,7 +36,7 @@ export async function POST(request: Request) {
           success: false,
           message: "Failed to update User status to accept messages",
         },
-        { status: 401 },
+        { status: 404 }
       );
     }
 
@@ -46,7 +45,7 @@ export async function POST(request: Request) {
         success: true,
         message: "Message Acceptance status updated successfully!",
       },
-      { status: 200 },
+      { status: 200 }
     );
   } catch (error) {
     console.error("Failed to update User status to accept messages", error);
@@ -56,7 +55,7 @@ export async function POST(request: Request) {
         success: false,
         message: "Failed to update User status to accept messages",
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -74,7 +73,7 @@ export async function GET(request: Request) {
         success: false,
         message: "Not authenticated!",
       },
-      { status: 401 },
+      { status: 401 }
     );
   }
 
@@ -89,7 +88,7 @@ export async function GET(request: Request) {
           success: false,
           message: "User not found",
         },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -98,7 +97,7 @@ export async function GET(request: Request) {
         success: true,
         isAcceptingMessage: foundUser.isAcceptingMessages,
       },
-      { status: 200 },
+      { status: 200 }
     );
   } catch (error) {
     console.error("Error in Getting Message Acceptance status", error);
@@ -108,7 +107,7 @@ export async function GET(request: Request) {
         success: false,
         message: "Error in Getting Message Acceptance status",
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
