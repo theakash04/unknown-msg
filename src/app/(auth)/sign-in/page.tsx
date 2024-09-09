@@ -57,11 +57,11 @@ function Page() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-background">
+    <div className="flex justify-center items-center min-h-screen bg-background mx-5">
       <div className="w-full max-w-md p-8 space-y-8 bg-secondary rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join Unkown Message
+            Join Unknown Message
           </h1>
           <p className="mb-4">Sign up to start your anoymous adventure</p>
         </div>
@@ -99,7 +99,9 @@ function Page() {
               <Button type="submit" disabled={isLoading}>
                 {isLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
-                ) : "Sign in"}
+                ) : (
+                  "Sign in"
+                )}
               </Button>
             </div>
           </form>

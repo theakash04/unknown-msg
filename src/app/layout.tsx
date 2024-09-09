@@ -8,7 +8,7 @@ import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Unkown Messages",
+  title: "unknown Messages",
   description:
     "Create a unique link to receive anonymous messages and honest feedback. Discover what people think without knowing who sent it.",
 };
@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <Toaster />
           {/* Footer */}
           <footer className="text-center p-4 md:p-6">
-            &copy; 2024 unkown message. All rights reserved.
+            &copy; 2024 unknown message. All rights reserved.
           </footer>
         </body>
       </AuthProvider>

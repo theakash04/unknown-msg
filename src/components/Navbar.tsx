@@ -10,21 +10,21 @@ function Navbar() {
   const user: User = session?.user as User;
 
   return (
-    <nav className="p-4 md:p-6">
+    <nav className="py-4 px-0 md:px-6 md:py-6">
       <div className="container mx-auto flex justify-between items-center">
         <a className="text-xl font-bold" href="/">
-          unkown messages
+          unknown messages
         </a>
         {session ? (
           <>
-            <Button className="md:w-auto font-bold" onClick={() => signOut()} variant={"destructive"} size={"lg"}>
+            <Button className="md:w-auto font-bold" onClick={() => signOut()} variant={"destructive"} size={"sm"}>
               Logout
             </Button>
           </>
         ) : (
           <>
             <Link href={"/sign-in"}>
-              <Button className="md:w-auto font-bold" size={"lg"}>Login</Button>
+              <Button className="md:w-auto font-bold" size={"sm"}>Login</Button>
             </Link>
           </>
         )}

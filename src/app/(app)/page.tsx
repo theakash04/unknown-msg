@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
             Messages Without Faces
           </div>
         </div>
-        <div className="max-w-7xl mx-auto grid gap-10">
+        <div className="max-w-7xl mx-auto grid gap-10 px-4">
           <p className="text-muted-foreground text-center md:text-xl max-w-2xl">
             Receive anonymous messages with ease! Create an account, get a
             unique link, and share it. People can send you messages{" "}
@@ -25,9 +26,21 @@ export default function Home() {
               <Button size={"lg"}>Continue</Button>
             </Link>
             <a href={"https://twitter.com/THEAkash04"}>
-              <Button size={"lg"} variant={"outline"}>Creater Social</Button>
+              <Button size={"lg"} variant={"outline"}>
+                Creater Social
+              </Button>
             </a>
           </div>
+        </div>
+
+        <div className="w-full flex items-center justify-center">
+          <Image
+            width={1000}
+            height={400}
+            src={"/dashboard.png"}
+            alt="Example image of dashboard"
+            className="drop-shadow-[0_15px_25px_rgba(225,225,225,0.25)] sm:drop-shadow-[0_15px_35px_rgba(225,225,225,0.25)] hover:scale-105 transition-all ease-linear px-10 rounded-md"
+          />
         </div>
       </section>
     </div>

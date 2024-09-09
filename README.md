@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Unknown Message
 
-## Getting Started
+[Un-Message](https://un-msg.vercel.app) lets you receive anonymous messages via a unique link. Share your link to collect messages without registration, read them anonymously, and manage message acceptance. The platform is responsive and works on any device.
 
-First, run the development server:
+### Features
+
+- **Get anonymous messages** from anyone by giving them your unique link
+- **Read messages** anonymously without revealing sender identity
+- **No registration or login required** for sending messages
+- **Registration or login required** for creting unique link
+- **Control message acceptance** you can disable and enable message acceptance as per your need
+- **Responsive design** for seamless experience on any device
+
+### How to Use
+
+1. Go to the website: [https://un-msg.vercel.app/](https://un-msg.vercel.app/)
+2. Login or create Account
+3. Get your unique link and share it to the other peoples
+4. Now peoples can send their messages to you annonymously
+5. Read the recieved messages in dashboard
+
+### Installation
+
+To run the project locally:
+
+Clone the repository:
+
+```bash
+git clone https://github.com/theakash04/unknown-msg
+```
+
+Install dependencies:
+
+```bash
+cd unlnown-msg
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and visit `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Next.js** for building the user interface and backend
+- **Vercel** for hosting the website
+- **Resend** for sending emails without a backend server
+- **shadcn/ui** for modern UI development and theming
+- **ZOD** for schema validation and ensuring data integrity by validating inputs
+- **MongoDB** for storing messages and user data
+- **NextAuth** for signIn authentication
 
-## Learn More
+### Contributing
 
-To learn more about Next.js, take a look at the following resources:
+If you find any bugs or have suggestions for improvements, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/theakash04/unknown-msg).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT License](LICENSE).

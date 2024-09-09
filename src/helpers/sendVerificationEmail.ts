@@ -11,7 +11,7 @@ export async function sendVerificationEmail(
     await resend.emails.send({
       from: "onboarding@resend.dev",
       to: email,
-      subject: "Unkown message | verification code",
+      subject: "Unknown message | verification code",
       react: VerificationEmail({ username, otp: verifyCode }),
     });
     return { success: true, message: "verification mail send successfully" };
