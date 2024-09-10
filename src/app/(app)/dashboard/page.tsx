@@ -145,7 +145,7 @@ function UserDashboard() {
             type="text"
             value={profileUrl}
             disabled
-            className="w-full p-2 mr-2 rounded-md input border-input border"
+            className="w-full p-2 mr-2 rounded-md input border-input border text-primary"
           />
           <Button onClick={copyToClipboard} size={"lg"}>Copy</Button>
         </div>
