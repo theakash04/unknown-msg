@@ -28,6 +28,13 @@ Clone the repository:
 git clone https://github.com/theakash04/unknown-msg
 ```
 
+giving this file so that you can make your own env and run this project locally and the .env.example data inyour .env with your configuration `url`
+
+```bash
+vim .env.example
+touch .env
+```
+
 Install dependencies:
 
 ```bash
@@ -52,6 +59,7 @@ Open your browser and visit `http://localhost:3000`
 - **ZOD** for schema validation and ensuring data integrity by validating inputs
 - **MongoDB** for storing messages and user data
 - **NextAuth** for signIn authentication
+
 
 ### Contributing
 
