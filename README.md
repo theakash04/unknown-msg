@@ -28,7 +28,7 @@ Clone the repository:
 git clone https://github.com/theakash04/unknown-msg
 ```
 
-giving this file so that you can make your own env and run this project locally and the .env.example data inyour .env with your configuration `url`
+giving this file so that you can make your own env and run this project locally and the .env.example data in your .env with your configuration `url`
 
 ```bash
 vim .env.example
