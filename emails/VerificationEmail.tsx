@@ -55,7 +55,7 @@ export default function VerificationEmail({
         </Row>
          <Row>
           <Button
-            href={`https://un-msg.verce.app/verify/${username}`}
+            href={`https://un-msg.vercel.app/verify/${username}`}
             style={{ color: '#61dafb' }}
           >
             Verify here
